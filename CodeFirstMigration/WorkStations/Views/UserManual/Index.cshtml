@@ -1,0 +1,70 @@
+﻿
+@{
+    ViewBag.Title = "User Manual";
+}
+@section styles{
+
+
+    <style>
+
+        .user-manual {
+            display: inline-block;
+            background-color: #f0f0f0;
+            padding: 10px 20px;
+            border-radius: 5px;
+        }
+
+            .user-manual a {
+                text-decoration: none;
+                color: #333;
+            }
+
+            .user-manual .icon {
+                margin-right: 5px;
+            }
+
+            .user-manual .text {
+                font-weight: bold;
+            }
+
+        .pdf-viewer {
+            margin-top: 20px;
+        }
+
+
+    </style>
+
+
+
+
+}
+
+
+<div class="page-heading">
+    <section class="section">
+        <div class="section-body">
+            <div class="user-manual">
+                <a href="/Files/User_Guide_Travel.pdf" target="_blank">
+                    <i class="icon" data-feather="book-open"></i>
+                    <span class="text">User Manual</span>
+                </a>
+            </div>
+            <div class="pdf-viewer">
+                <iframe src="/Files/User_Guide_Travel.pdf" width="100%" height="700px"></iframe>
+            </div>
+        </div>
+    </section>
+</div>
+
+
+
+@section scripts{
+
+    <script>
+        $("#Documents_li").addClass("active");
+        $("#Documents_ul").addClass("active");
+        $("#usermanual").addClass("active");
+    </script>
+
+}
+

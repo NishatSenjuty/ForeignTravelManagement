@@ -1,0 +1,424 @@
+﻿
+@{
+    ViewBag.Title = "Sign Up || CRBS";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TravelManagement || Sign Up</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/Content/assets/css/bootstrap.css">
+    <link rel="stylesheet" href="~/Content/assets/vendors/bootstrap-icons/bootstrap-icons.css">
+    <link rel="stylesheet" href="~/Content/assets/css/app.css">
+    <link rel="stylesheet" href="~/Content/assets/css/pages/auth.css">
+    <link rel="stylesheet" href="~/Content/assets/vendors/izitoast/css/iziToast.min.css">
+    <link rel="shortcut icon" href="~/favicon.png" type="image/x-icon">
+
+    <style>
+        .row {
+            --bs-gutter-x: 0rem;
+            --bs-gutter-y: 0;
+            display: flex;
+            flex-wrap: wrap;
+            margin-left: calc(var(--bs-gutter-x)*-.5);
+            margin-right: calc(var(--bs-gutter-x)*-.5);
+            margin-top: calc(var(--bs-gutter-y)*-1);
+        }
+
+        .image {
+            background-size: cover;
+        }
+
+        #auth #auth-left {
+            padding: 3rem 1rem;
+        }
+
+        input:-webkit-autofill::first-line {
+            font-family: 'Nunito' !important;
+            font-size: 1.2rem;
+        }
+
+        img {
+            object-fit: cover
+        }
+
+        .asterisk:before {
+            content: "* ";
+            color: red;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="auth">
+        <div class="row h-100">
+            <div class="col-lg-12 col-12">
+                <div id="auth-left">
+                    <div class="auth-logo text-center mt-3 mb-5">
+                        <a><img style="height: 100px;" src="~/Content/assets/images/logo/urmi_logo.png" alt="Logo"></a>
+                        <h3 class="text ">Travel Management </h3>
+
+                    </div>
+                    <div class="col d-flex justify-content-center">
+                        <div class="card col-lg-6 shadow-lg">
+                            <div class="card-body">
+                                <div class="heading">
+                                    <h3 class="text ">Create New Account</h3>
+                                    <h5 class="text" style="color: red; font-style: italic;">***All the information has to correspond to the passport.</h5>
+                                </div>
+
+                                <form id="user_sign_up_form" name="user_sign_up_form" class="form-inline needs-validation" novalidate>
+                                    <div class="row mt-3">
+
+                                        @*<div class="form-group mb-2">
+                                            <label for="helpInputTop" class="asterisk">Employee Id</label>
+                                            <small class="text-muted">eg:<i>UHM1234</i></small>
+                                            <input type="text" class="form-control form-control" id="empid" name="empid" placeholder="Enter Your Employee Id." autofocus required>
+                                            <div class="invalid-feedback">
+                                                Please enter your employee Id.
+                                            </div>
+                                        </div>*@
+
+
+                                        <div class="form-group mb-2">
+                                            <label for="helpInputTop" class="asterisk">Employee Id</label>
+                                            <small class="text-muted">eg:<i>UHM1234</i></small>
+                                            <input type="text" class="form-control form-control" id="empid" name="empid" placeholder="Enter Your Employee Id." autofocus required oninput="this.value = this.value.toUpperCase()">
+                                            <div class="invalid-feedback">
+                                                Please enter your employee Id.
+                                            </div>
+                                        </div>
+
+
+                                        <div class="form-group mb-2">
+                                            <label for="helpInputTop" class="asterisk">Company</label>
+                                            <small class="text-muted">eg:<i>Urmi Corporate</i></small>
+                                            <select class="form-control form-control form-select" id="company" name="company" required>
+                                                <option value="">Select a company</option>
+                                            </select>
+                                            <div class="invalid-feedback">
+                                                Please select a company name.
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group mb-2">
+                                            <label for="helpInputTop" class="asterisk">Location</label>
+                                            <select class="form-control form-control form-select" id="location" name="location" required>
+                                                <option value="">Select a Location</option>
+                                            </select>
+                                            <div class="invalid-feedback">
+                                                Please select a location name.
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group mb-2">
+                                            <label for="helpInputTop" class="asterisk">Department</label>
+                                            <small class="text-muted">eg:<i>Information Technology</i></small>
+                                            <select class="form-control form-control form-select" id="department" name="department" required>
+                                                <option value="">Select a Department</option>
+                                            </select>
+                                            <div class="invalid-feedback">
+                                                Please select your department.
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group mb-2">
+                                            <label for="helpInputTop" class="asterisk">Designation</label>
+                                            <small class="text-muted">eg:<i>Software Engineer</i></small>
+                                            <select class="form-control form-control form-select" id="designation" name="designation" required>
+                                                <option value="">Select a Designation</option>
+                                            </select>
+                                            <div class="invalid-feedback">
+                                                Please enter designation.
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group mb-2">
+                                            <label for="helpInputTop" class="asterisk">Full Name</label>
+                                            <small class="text-muted">eg:<i>Jhon M. doe</i></small>
+                                            <input type="text" class="form-control form-control" id="fullname" name="fullname" placeholder="Enter Your Full Name." autofocus required>
+                                            <div class="invalid-feedback">
+                                                Please enter your full name.
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group mb-2">
+                                            <label for="helpInputTop" class="asterisk">First Name</label>
+                                            <small class="text-muted">eg:<i>Jhon</i></small>
+                                            <input type="text" class="form-control form-control" id="firstname" name="firstname" placeholder="Enter Your First Name." autofocus required>
+                                            <div class="invalid-feedback">
+                                                Please enter your first name.
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group mb-2">
+                                            <label for="helpInputTop">Middle Name</label>
+                                            <small class="text-muted">eg:<i>M.</i></small>
+                                            <input type="text" class="form-control form-control" id="middlename" name="middlename" placeholder="Enter Your Middle Name.">
+                                        </div>
+
+                                        <div class="form-group mb-2">
+                                            <label for="helpInputTop" class="asterisk">Last Name</label>
+                                            <small class="text-muted">eg:<i>doe</i></small>
+                                            <input type="text" class="form-control form-control" id="lastname" name="lastname" placeholder="Enter Your Last Name." autofocus required>
+                                            <div class="invalid-feedback">
+                                                Please enter your last name.
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group mb-2">
+                                            <label for="dob" class="asterisk">Date of Birth</label>
+                                            <div class="input-group">
+                                                <input type="text" id="dob" name="dob" class="form-control" autofocus required placeholder="dd/MM/yyyy" />
+                                                <div class="input-group-append">
+                                                    <span class="input-group-text">
+                                                        <i class="bi bi-calendar" style="height: 100%;"></i>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <small class="form-text text-muted">
+                                                Note: The year list shows 20 years at a time. To select a year not in the list, choose the lowest year and click the dropdown again. Repeat until the desired year is available.
+                                            </small>
+                                            <div class="invalid-feedback">
+                                                Please enter Date of Birth.
+                                            </div>
+                                        </div>
+
+
+                                        @*Gender*@
+                                        <div class="form-group mb-2">
+                                            <label for="gender" class="asterisk">Gender</label>
+                                            <div class="input-group">
+                                                <select class="form-control" id="gender" name="gender" autofocus required>
+                                                    <option value="-1">Select Gender</option>
+                                                    <option value="male">Male</option>
+                                                    <option value="female">Female</option>
+                                                    <option value="other">Other</option>
+                                                </select>
+                                            </div>
+                                            <div class="invalid-feedback">
+                                                Please select your gender.
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group mb-2">
+                                            <label for="helpInputTop" class="asterisk">Nationality</label>
+                                            <small class="text-muted">eg:<i>Bangladeshi</i></small>
+                                            <input type="text" class="form-control form-control" id="nationality" name="nationality" placeholder="Enter Your Nationality." autofocus required>
+                                            <div class="invalid-feedback">
+                                                Please enter your Nationality.
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group mb-2">
+                                            <label for="address" class="asterisk">Present Address</label>
+                                            <textarea class="form-control" id="address" name="address" placeholder="Enter Your Present Address." rows="2" required></textarea>
+                                            <div class="invalid-feedback">
+                                                Please enter your Present Address.
+                                            </div>
+                                        </div>
+
+                                        @*<div class="form-group mb-2">
+            <label for="helpInputTop" class="asterisk">Email</label>
+            <small class="text-muted"><i>someone@urmigroup.net</i></small>
+            <input type="email" class="form-control form-control" id="UN_official" name="UN_official" placeholder="Enter Your Email" required>
+            <div class="invalid-feedback">
+                Please enter your official email.
+            </div>
+        </div>*@
+
+                                        <div class="form-group mb-2">
+                                            <label for="helpInputTop" class="asterisk">Email</label>
+                                            <small class="text-muted"><i>someone@urmigroup.net</i></small>
+                                            <input type="email" class="form-control form-control" id="email_address" name="email_address" placeholder="Enter Your Email" required>
+                                            <div class="invalid-feedback">
+                                                Please enter your official email.
+                                            </div>
+                                        </div>
+
+
+                                        <div class="form-group mb-2">
+                                            <label for="helpInputTop" class="asterisk">Contact No</label>
+                                            <small class="text-muted">eg:<i>01********</i></small>
+                                            <input type="text" class="form-control form-control" id="contactNo" name="contactNo" placeholder="Enter Your Contact No" required>
+                                            <div class="invalid-feedback">
+                                                Please enter your contact no.
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group mb-2">
+                                            <label for="address" class="asterisk">Emergency Contact Information</label>
+                                            <textarea class="form-control" id="emergency" name="emergency" placeholder="Enter Emergency Contact Information." rows="2" required></textarea>
+                                            <div class="invalid-feedback">
+                                                Please enter Emergency Contact Information.
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group mb-2">
+                                            <label for="fileUploadpass" class="asterisk">
+                                                Upload Current Passport
+                                            </label>
+                                            <small class="text-muted">eg:<i>Accepted file types: .jpg, .jpeg, .pdf, .doc etc</i></small>
+                                            <div class="custom-file">
+                                                <input type="file" class="custom-file-input" id="fileUploadpass" name="fileUploadpass" autofocus required multiple>
+                                            </div>
+                                            <div class="invalid-feedback">
+                                                Please choose a file to upload.
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group mb-2">
+                                            <label for="fileUploadNID" class="asterisk">
+                                                Upload Current National ID card
+                                            </label>
+                                            <small class="text-muted">eg:<i>Accepted file types: .jpg, .jpeg, .pdf, .doc etc</i></small>
+                                            <div class="custom-file">
+                                                <input type="file" class="custom-file-input" id="fileUploadNID" name="fileUploadNID" autofocus required multiple>
+                                            </div>
+                                            <div class="invalid-feedback">
+                                                Please choose at least one file to upload.
+                                            </div>
+                                        </div>
+
+
+
+                                        <div class="form-group mb-2">
+                                            <label for="helpInputTop" class="asterisk">Password</label>
+                                            <small class="text-muted" id="password_label"></small>
+                                            <input type="password" class="form-control form-control" id="password" name="password" placeholder="Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required>
+                                            <div class="invalid-feedback">
+                                                Your password must have at least 8 characters and contain at least one uppercase letter,one lowercase letter and one number.
+                                            </div>
+                                        </div>
+                                        <div class="form-group mb-2">
+                                            <label for="helpInputTop" class="asterisk">Confirm Password</label>
+                                            <small class="text-muted" id="confirm_password_label"></small>
+                                            <input type="password" class="form-control form-control" id="confirm_password" name="confirm_password" placeholder="Confirm Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required>
+                                            <div class="invalid-feedback">
+                                                Your password must have at least 8 characters and contain at least one uppercase letter,one lowercase letter and one number.
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <div class="form-check">
+                                                <input type="checkbox" id="checkbox5" class="form-check-input" checked="" data-parsley-required="true" data-parsley-error-message="You have to accept our terms and conditions to proceed." data-parsley-multiple="checkbox5" required>
+                                                <label for="checkbox5" class="form-check-label form-label">I accept these terms and conditions.</label>
+                                                <div class="invalid-feedback">
+                                                    You have to accept our terms and conditions to proceed.
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary btn-block btn-lg shadow-lg" id="sign_up_btn" name="sign_up_btn">Sign Up</button>
+
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center mt-5 text-lg fs-4">
+                        <p class="text-gray-600">
+                            Already have an account?
+                            <a href="/sign_in" class="font-bold">Sign In</a>
+                        </p>
+                        <p>
+                            <a class="font-bold" href="/acc/forgot_password">Forgot password?</a>
+                        </p>
+                    </div>
+                    <div id='recaptcha' class="g-recaptcha" data-sitekey="@ViewBag.Sitekey" data-callback="user_sign_up" data-size="invisible"></div>
+
+                    @*<div class="text-center text-lg fs-4">
+                            <p class="text-gray-600">
+                                Don't have an account?<a href="auth-register.html"class="font-bold">Sign up</a>.
+                            </p>
+                        </div>*@
+
+                    <div class="text-center mt-5">
+                        <a><img style="height: 4rem;" src="~/Content/assets/images/logo/urmi_logo.png" alt="Logo"></a>
+                        <p class="text-center">Copyright © 2021 | All Right Reserved</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <script src="~/_Assets/libs/jquery/jquery.min.js"></script>
+    <link href="~/content/assets/vendors/jquery-ui/jquery-ui.css" rel="stylesheet" />
+    <script src="~/Content/assets/vendors/jquery-ui/jquery-ui.js"></script>
+
+
+    <script src="~/Content/assets/vendors/jquery/jquery.min.js"></script>
+    <script src="~/Content/assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+    <script src="~/Content/assets/js/bootstrap.bundle.min.js"></script>
+    <script src="~/Content/assets/vendors/platform/platform.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/joeymalvinni/webrtc-ip/dist/bundle.dev.js"></script>
+    <script src="~/Content/assets/vendors/izitoast/js/iziToast.min.js"></script>
+    <script>
+        // Example starter JavaScript for disabling form submissions if there are invalid fields
+        (() => {
+            'use strict';
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            const forms = document.querySelectorAll('.needs-validation');
+            // Loop over them and prevent submission
+            Array.prototype.slice.call(forms).forEach((form) => {
+                form.addEventListener('submit', (event) => {
+                    if (!form.checkValidity()) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        })();
+    </script>
+    <script type='text/javascript'>
+        $(document).ready(function () {
+            $('.carousel').carousel({
+                interval: 3000
+            })
+        });
+    </script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+    <script>
+        //$("#contactNo").attr({ "pattern": "/^(?:(?:\+|00)88|01)?\d{11}$/" });
+
+        $("#email_address").attr({ "pattern": "^[A-Za-z0-9_.%+\-]+@@urmigroup\.net$" });
+
+
+
+        $('#password, #confirm_password').on('keyup', function () {
+            if ($('#password').val() != "" && $('#confirm_password').val() != "") {
+
+                if ($('#password').val() == $('#confirm_password').val()) {
+                    //$('#password').attr('class', 'form-control form-control is-valid');
+                    //$('#confirm_password').attr('class', 'form-control form-control is-valid');
+
+                    $('#password_label').html('<i class="bi bi-check2-all" style="color:#00ff89;font-size: 15px;"></i>');
+                    $('#confirm_password_label').html('<i class="bi bi-check2-all" style="color:#00ff89;font-size: 15px;"></i>');
+                } else {
+                    //$('#password').attr('class', 'form-control form-control is-invalid');
+                    //$('#confirm_password').attr('class', 'form-control form-control is-invalid');
+
+                    $('#password_label').html('<i style="color:#ff0000">Those passwords did not match.</i>');
+                    $('#confirm_password_label').html('<i style="color:#ff0000">Those passwords did not match.</i>');
+                }
+            }
+
+        });
+    </script>
+
+    <link href="~/content/assets/vendors/jquery-ui/jquery-ui.css" rel="stylesheet" />
+    <script src="~/Content/assets/vendors/jquery-ui/jquery-ui.js"></script>
+
+    <script src="~/Users/Scripts/user.account_sign_up.js?bs=12"></script>
+</body>
+
+</html>

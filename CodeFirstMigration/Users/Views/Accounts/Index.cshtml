@@ -1,0 +1,277 @@
+
+@{
+    ViewBag.Title = "Login";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TravelManagement || Login</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/Content/assets/css/bootstrap.css">
+    <link rel="stylesheet" href="~/Content/assets/vendors/bootstrap-icons/bootstrap-icons.css">
+    <link rel="stylesheet" href="~/Content/assets/css/app.css">
+    <link rel="stylesheet" href="~/Content/assets/css/pages/auth.css">
+    <link rel="stylesheet" href="~/Content/assets/vendors/izitoast/css/iziToast.min.css">
+    <link rel="shortcut icon" href="~/favicon.png" type="image/x-icon">
+
+    <style>
+
+        .row {
+            --bs-gutter-x: 0rem;
+            --bs-gutter-y: 0;
+            display: flex;
+            flex-wrap: wrap;
+            margin-left: calc(var(--bs-gutter-x)*-.5);
+            margin-right: calc(var(--bs-gutter-x)*-.5);
+            margin-top: calc(var(--bs-gutter-y)*-1);
+        }
+
+        .image {
+            background-size: cover;
+        }
+
+        #auth #auth-left {
+            padding: 3rem 1rem;
+        }
+
+        input:-webkit-autofill::first-line {
+            font-family: 'Nunito' !important;
+            font-size: 1.2rem;
+        }
+
+        img {
+            object-fit: cover
+        }
+
+        .toast--active {
+            top: 70px;
+            z-index: 10000;
+            opacity: 1;
+        }
+
+        .toast {
+            font-weight: 400;
+            font-family: Arial,Helvetica,sans-serif;
+            font-family: var(--font-family-text);
+            box-shadow: 0 3px 6px 0 rgb(115 143 147 / 50%);
+            position: fixed;
+            top: 10px;
+            left: 50%;
+            z-index: 100;
+            padding: 15px 20px;
+            background-color: #f3f7f7;
+            color: #39424e;
+            font-size: 14px;
+            opacity: 0;
+            transition-timing-function: ease-in-out;
+            transition-duration: .2s;
+            transition-property: background-color,top,opacity;
+            transform: translateX(-50%);
+        }
+    </style>
+
+
+</head>
+
+<body>
+    <div id="auth">
+
+        <div class="row h-100">
+            <div class="col-lg-6 d-none d-lg-block">
+                <div id="auth-right">
+                    <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+                        <ol class="carousel-indicators">
+                            <li data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0"
+                                class="active"></li>
+                            <li data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"></li>
+                            <li data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"></li>
+                        </ol>
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img src="~/Content/assets/images/samples/TM4.jpg" class="w-100"
+                                     alt="..." style="max-width:100%;height:100vh;display: inline-block;overflow: hidden;">
+
+                            </div>
+                            <div class="carousel-item">
+                                <img src="~/Content/assets/images/samples/TM3.png" class="w-100"
+                                     alt="..." style="max-width:100%;height:100vh;display: inline-block;overflow: hidden;">
+
+                            </div>
+                            <div class="carousel-item">
+                                <img src="~/Content/assets/images/samples/TM!.jpg" class="w-100"
+                                     alt="..." style="max-width:100%;height:100vh;display: inline-block;overflow: hidden;">
+
+                            </div>
+                        </div>
+                        <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button"
+                           data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon btn btn-primary rounded p-3" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselExampleCaptions" role="button"
+                           data-bs-slide="next">
+                            <span class="carousel-control-next-icon btn btn-primary rounded p-3" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </a>
+                    </div>
+
+                    @*<div id="carouselControls" class="carousel slide" data-ride="carousel">
+                            <div class="carousel-inner">
+                                <div class="carousel-item image active" id="test">
+                                    <img src="~/Content/assets/images/samples/bg3.jpg" class="w-100"
+                                         alt="..." style="max-width:100%;height:100vh;display: inline-block;overflow: hidden;">
+
+                            </div>
+                                <div class="carousel-item image">
+                                    <img src="~/Content/assets/images/samples/bg4.jpg" class="d-block w-100"
+                                         alt="..." style="max-width:100%;height:100vh;display: inline-block;overflow: hidden;">
+                                </div>
+                                <div class="carousel-item image">
+                                    <img src="~/Content/assets/images/samples/bg5.jpg" class="d-block w-100"
+                                         alt="..." style="max-width:100%;height:100vh;display: inline-block;overflow: hidden;">
+                                </div>
+                            </div>
+                            <a class="carousel-control-prev" href="#carouselControls" role="button"
+                               data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon btn btn-primary rounded p-3" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </a>
+                            <a class="carousel-control-next" href="#carouselControls" role="button"
+                               data-bs-slide="next">
+                                <span class="carousel-control-next-icon btn btn-primary rounded p-3" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </a>
+                        </div>*@
+                </div>
+            </div>
+            <div class="col-lg-6 col-12">
+                <div class="toast toast--loading toast--active"></div>
+                <div id="auth-left">
+                    <div class="auth-logo text-center mt-2 mb-4">
+                        @*<a ><img style="height: 220px; width: 220px" src="~/Content/assets/images/logo/login-logo.png" alt="Logo"></a>*@
+                        <a ><img style="height: 7rem;" src="~/Content/assets/images/logo/urmi_logo.png" alt="Logo"></a>
+                        <h2>Travel Management System</h2>
+                        <br/>
+
+                        @*<a ><img style="height: 4rem;" src="~/Content/assets/images/logo/urmi_logo.png" alt="Logo"></a>*@
+
+                    </div>
+                    <div class="col d-flex justify-content-center">
+                        <div class="card col-lg-6 shadow-lg">
+                            <div class="card-body">
+                                <div class="heading">
+                                    <h2 class="text ">Sign in</h2>
+
+                                </div>
+                                <form id="admin_sign_in_form" name="admin_sign_in_form" class="form-inline needs-validation" novalidate>
+                                    <div class="row mt-3">
+                                        <div class="form-group position-relative has-icon-left mb-4">
+                                            <input type="text" class="form-control form-control-xl" id="username" name="username" placeholder="Username" autofocus required>
+                                            <div class="form-control-icon">
+                                                <i class="bi bi-person"></i>
+                                            </div>
+                                        </div>
+                                        <div class="form-group position-relative has-icon-left mb-4">
+                                            <input type="password" class="form-control form-control-xl" id="password" name="password" placeholder="Password" required>
+                                            <div class="form-control-icon">
+                                                <i class="bi bi-shield-lock"></i>
+                                            </div>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary btn-block btn-lg shadow-lg" id="login_btn" name="login_btn">Login</button>
+
+                                        <div class="d-flex align-items-start mt-1">
+                                            <a href="/acc/forgot_password" class="text text-links" id="forgot_password">Forgot Password?</a>
+
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center mt-3 text-lg fs-4">
+                        <p class="text-gray-600">
+                            Don't have an account?
+                            <a href="/acc/sign_up" class="font-bold">Sign up</a>
+                        </p>
+                        <p>
+                            <a class="font-bold" href="/acc/forgot_password">Forgot password?</a>
+                        </p>
+                    </div>
+
+                    <div id='recaptcha' class="g-recaptcha" data-sitekey="@ViewBag.Sitekey" data-callback="user_sign_up" data-size="invisible"></div>
+
+
+                    @*<div class="text-center text-lg fs-4">
+                        <p class="text-gray-600">
+                            Don't have an account?<a href="auth-register.html"class="font-bold">Sign up</a>.
+                        </p>
+                    </div>*@
+
+                    <div class="text-center mt-5">
+                        <a ><img style="height: 4rem;" src="~/Content/assets/images/logo/urmi_logo.png" alt="Logo"></a>
+                        <p class="text-center">Copyright  &copy; 2023 | All Right Reserved</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <script src="~/Content/assets/vendors/jquery/jquery.min.js"></script>
+
+    <script src="~/Content/assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+    <script src="~/Content/assets/js/bootstrap.bundle.min.js"></script>
+    <script src="~/Content/assets/vendors/platform/platform.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/joeymalvinni/webrtc-ip/dist/bundle.dev.js"></script>
+    <script src="~/Content/assets/vendors/izitoast/js/iziToast.min.js"></script>
+    <script>
+        // Example starter JavaScript for disabling form submissions if there are invalid fields
+        (() => {
+            'use strict';
+
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            const forms = document.querySelectorAll('.needs-validation');
+
+            // Loop over them and prevent submission
+            Array.prototype.slice.call(forms).forEach((form) => {
+                form.addEventListener('submit', (event) => {
+                    if (!form.checkValidity()) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        })();
+    </script>
+    <script type='text/javascript'>
+        $(document).ready(function () {
+            $('.carousel').carousel({
+                interval: 3000
+            })
+        });
+
+
+                //iziToast.show({
+                //    title: "Loading",
+                //    message: "",
+                //    position: "topCenter", // position the loader in the middle of the page
+                //    class: "izitoast_loader", // to target the loader when you want to close it
+                //    overlay: false, // make sure nothing is clickable in the background
+                //    image: "/Content/assets/vendors/svg-loaders/grid.svg", // URI to an animated loader svg. examples: https://github.com/SamHerbert/SVG-Loaders
+                //    timeout: false, // prevent it from closing until you want it to.
+                //    close: false,
+                //})
+
+    </script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <script src="~/Users/Scripts/u.sign_in.js"></script>
+</body>
+
+</html>
+

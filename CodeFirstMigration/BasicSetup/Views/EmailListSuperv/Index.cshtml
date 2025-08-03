@@ -1,0 +1,97 @@
+﻿
+
+@{
+    ViewBag.Title = "Email List";
+    ViewBag.Version = "v1.1";
+}
+@section styles{
+
+}
+
+@*<style></style>*@
+
+
+<div class="page-heading">
+    <section class="section">
+        <div class="section-body">
+            <div class="row">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xs-12">
+                    <div class="card  shadow">
+                        <div class="card-header" style="background-color:#e0e0e0">
+                            <div class="row">
+                                <div class="col-12 col-md-6 order-md-1 order-last">
+                                    <h3>Email List</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+
+                            <!--company filter section end-->
+                            <div class="table-responsive">
+                                <table class="table table-striped table-hover" id="ls_company_table">
+                                    @*<thead>
+                                        <tr>
+                                            <th>Email List</th>
+                                        </tr>
+                                    </thead>*@
+                                    <tbody id="ls_company_table_tbody"></tbody>
+
+                                </table>
+                                <div class="form-group">
+                                    <label for="emailList">Enter email addresses:</label>
+                                    <marquee behavior="alternate" direction="left" scrollamount="5">
+                                        <span class="text-danger">
+                                            <b>A semicolon must be added after each email address.</b>
+                                        </span>
+                                    </marquee>
+                                    <div class="form-control" id="emailList" contenteditable="true" role="textbox" style="height: 300px; overflow-y: scroll;"></div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 order-md-2 order-first">
+                                <div class="text-center breadcrumb-header float-start float-lg-end">
+                                    <a href="#" class="btn btn-primary rounded-pill" data-toggle="modal" id="ls_add_company_btn">Update Email List</a>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <!--table info-->
+
+                                <div class="col-md-4">
+                                    <span class="badge bg-primary mt-3" id="ls_company_table_info"></span>
+                                </div>
+                                <!--table spinner-->
+
+                                <div class="col-md-4">
+                                    <div class="text-center" id="ls_company_loading_spinner">
+                                        <img src="~/Content/assets/vendors/svg-loaders/rings.svg" class="" style="width: 3rem" alt="audio"><span style="font-weight: 700">Loading...</span>
+                                    </div>
+                                </div>
+
+                                <!--table pagination-->
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+</div>
+
+@section scripts{
+
+    <script>
+
+        $("#BasicSetups_li").addClass("active");
+        $("#BasicSetups_ul").addClass("active");
+        $("#emailListsup").addClass("active");
+    </script>
+
+    <script src="~/BasicSetup/Scripts/EmailListSupv.js"></script>
+
+}
+
+

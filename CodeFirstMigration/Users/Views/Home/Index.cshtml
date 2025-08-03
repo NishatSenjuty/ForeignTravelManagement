@@ -1,0 +1,143 @@
+@{
+    ViewBag.Title = "Home";
+}
+
+@section styles{
+    <style>
+        /*svg {
+            display: block;
+            margin: auto;
+        }*/
+
+        .frame {
+            stroke: tomato;
+            stroke-width: 18px;
+            fill: none;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .description {
+            fill: tomato;
+            text-transform: uppercase;
+            font-size: 50px;
+            font-family: sans-serif;
+            font-weight: 900;
+        }
+
+        .small_circle {
+            fill: #666;
+        }
+
+        .bolt {
+            fill: #fff;
+        }
+
+        .wheel {
+            transform-box: fill-box;
+            transform-origin: center;
+            animation: torsion 10s linear infinite;
+        }
+
+        .tyre {
+            fill: none;
+            stroke: #fff;
+            stroke-width: 4px;
+            stroke-dasharray: 11.5px 11.5px;
+        }
+
+        .anim {
+            animation: draq 4s linear infinite;
+        }
+
+        .track {
+            animation: diing 4s linear forwards;
+        }
+
+
+        @@keyframes torsion {
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        @@keyframes diing {
+            0% {
+                transform: translateX(-100%);
+            }
+
+            100% {
+                transform: translateX(0);
+            }
+        }
+
+        @@keyframes draq {
+            40% {
+                transform: translateY(-10px);
+            }
+
+            60% {
+                transform: translateY(10px);
+            }
+        }
+    </style>
+
+}
+<div class="page-heading">
+    <section class="section">
+        <div class="section-body">
+            <div class="row">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xs-12">
+                    <div class="card  shadow">
+                        @*<div class="card-header">
+                                <h4>Slides only</h4>
+                                <p>A carousel without slide control</p>
+                            </div>*@
+                        <div class="card-body">
+                            <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+                                <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                        <img src="~/Content/assets/images/samples/TM4.jpg" class="d-block w-100" alt="...">
+                                    </div>
+                                    <div class="carousel-item">
+                                        <img src="~/Content/assets/images/samples/TM3.png" class="d-block w-100" alt="...">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</div>
+
+@section scripts{
+    <script>
+            //izitoast.info({
+            //    timeout:10000,
+            //    title: 'নোটিশ:',
+            //    message: '২০২১ বছরের ডাটা এন্ট্রির জন্য ফিল্টার সেকশন থেকে বছর পরিবর্তন করুন।',
+            //    position: 'center',
+            //    buttons: [
+            //        ['<button>ok</button>', function (instance, toast) {
+            //            instance.hide({
+            //                transitionout: 'fadeoutup',
+            //                onclosing: function (instance, toast, closedby) {
+            //                    console.info('closedby: ' + closedby); // the return will be: 'closedby: buttonname'
+            //                }
+            //            }, toast, 'buttonname');
+            //        }, true]
+            //    ],
+            //    onopening: function (instance, toast) {
+            //        console.info('callback abriu!');
+            //    },
+            //    onclosing: function (instance, toast, closedby) {
+            //        console.info('closedby: ' + closedby); // tells if it was closed by 'drag' or 'button'
+            //    }
+            //});
+    </script>
+
+}
+

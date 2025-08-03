@@ -1,0 +1,319 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="page-heading">
+    <section class="section">
+        <div class="section-body">
+            <div class="row">
+                <div class="col d-flex justify-content-center">
+                    <div class="card col-md-8 col-xl-4">
+                        <div class="card-body">
+                            <div class="heading">
+                                <h2 class="text ">Update Your Account</h2>
+                                <h5 class="text" style="color: red; font-style: italic;">***All the information has to correspond to the passport.</h5>
+                            </div>
+                            <form id="user_sign_up_form" name="user_sign_up_form" class="form-inline needs-validation" novalidate>
+                                <div class="row mt-3">
+
+                                    @*<div class="form-group mb-2">
+                                            <label for="helpInputTop" class="asterisk">Name</label>
+                                            <small class="text-muted">eg:<i>Jhon doe</i></small>
+                                            <input type="text" class="form-control form-control" id="fullname" name="fullname" placeholder="Enter Your Name." required>
+                                            <div class="invalid-feedback">
+                                                Please enter your name.
+                                            </div>
+                                        </div>
+                                        <div class="form-group mb-2">
+                                            <label for="helpInputTop" class="asterisk">Contact No</label>
+                                            <small class="text-muted">eg:<i>01********</i></small>
+                                            <input type="text" class="form-control form-control" id="contactNo" name="contactNo" placeholder="Enter Your Contact No" required>
+                                            <div class="invalid-feedback">
+                                                Please enter your contact no.
+                                            </div>
+                                        </div>
+                                        <div class="form-group mb-2">
+                                            <label for="helpInputTop" class="asterisk">Email</label>
+                                            <small class="text-muted"><i>someone@urmigroup.net</i></small>
+                                            <input type="email" class="form-control form-control" id="email_address" name="email_address" placeholder="Enter Your Email" readonly>
+                                            <div class="invalid-feedback">
+                                                Please enter your official email.
+                                            </div>
+                                        </div>
+                                        <div class="form-group mb-2">
+                                            <label for="helpInputTop" class="asterisk">Company</label>
+                                            <small class="text-muted">eg:<i>Urmi Corporate</i></small>
+                                            <select class="form-control form-control form-select" id="company" name="company" required>
+                                                <option value="">Select a company</option>
+                                            </select>
+                                            <div class="invalid-feedback">
+                                                Please select a company name.
+                                            </div>
+                                        </div>
+                                        <div class="form-group mb-2">
+                                            <label for="helpInputTop" class="asterisk">Location</label>
+                                            <small class="text-muted">eg:<i>Gulshan 01</i></small>
+                                            <select class="form-control form-control form-select" id="location" name="location" required>
+                                                <option value="">Select a Location</option>
+                                            </select>
+                                            <div class="invalid-feedback">
+                                                Please select a location name.
+                                            </div>
+                                        </div>*@
+
+
+                                    @*<div class="form-group mb-2">
+                                            <label for="helpInputTop">Employee Id<span style="color: red;">*</span></label>
+                                            <small class="text-muted">eg:<i>UHM1234</i></small>
+                                            <input type="text" class="form-control form-control" id="empid" name="empid" placeholder="Enter Your Employee Id." autofocus required>
+                                            <div class="invalid-feedback">
+                                                Please enter your employee Id.
+                                            </div>
+                                        </div>*@
+
+                                    <div class="form-group mb-2">
+                                        <label for="helpInputTop" class="asterisk">Employee Id</label>
+                                        <small class="text-muted">eg:<i>UHM1234</i></small>
+                                        <input type="text" class="form-control form-control" id="empid" name="empid" placeholder="Enter Your Employee Id." autofocus required oninput="this.value = this.value.toUpperCase()">
+                                        <div class="invalid-feedback">
+                                            Please enter your employee Id.
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group mb-2">
+                                        <label for="helpInputTop">Company<span style="color: red;">*</span></label>
+                                        <small class="text-muted">eg:<i>Urmi Corporate</i></small>
+                                        <select class="form-control form-control form-select" id="company" name="company" required>
+                                            <option value="">Select a company</option>
+                                        </select>
+                                        <div class="invalid-feedback">
+                                            Please select a company name.
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group mb-2">
+                                        <label for="helpInputTop" class="asterisk">Location</label>
+                                        <select class="form-control form-control form-select" id="location" name="location" required>
+                                            <option value="">Select a Location</option>
+                                        </select>
+                                        <div class="invalid-feedback">
+                                            Please select a location name.
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group mb-2">
+                                        <label for="helpInputTop">Department<span style="color: red;">*</span></label>
+                                        <small class="text-muted">eg:<i>Information Technology</i></small>
+                                        <select class="form-control form-control form-select" id="department" name="department" required>
+                                            <option value="">Select a Department</option>
+                                        </select>
+                                        <div class="invalid-feedback">
+                                            Please select your department.
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group mb-2">
+                                        <label for="helpInputTop">Designation<span style="color: red;">*</span></label>
+                                        <small class="text-muted">eg:<i>Software Engineer</i></small>
+                                        <select class="form-control form-control form-select" id="designation" name="designation" required>
+                                            <option value="">Select a Designation</option>
+                                        </select>
+                                        <div class="invalid-feedback">
+                                            Please enter designation.
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group mb-2">
+                                        <label for="helpInputTop">Full Name<span style="color: red;">*</span></label>
+                                        <small class="text-muted">eg:<i>Jhon M. doe</i></small>
+                                        <input type="text" class="form-control form-control" id="fullname" name="fullname" placeholder="Enter Your Full Name." autofocus required>
+                                        <div class="invalid-feedback">
+                                            Please enter your full name.
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group mb-2">
+                                        <label for="helpInputTop">First Name<span style="color: red;">*</span></label>
+                                        <small class="text-muted">eg:<i>Jhon</i></small>
+                                        <input type="text" class="form-control form-control" id="firstname" name="firstname" placeholder="Enter Your First Name." autofocus required>
+                                        <div class="invalid-feedback">
+                                            Please enter your first name.
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group mb-2">
+                                        <label for="helpInputTop">Middle Name</label>
+                                        <small class="text-muted">eg:<i>M.</i></small>
+                                        <input type="text" class="form-control form-control" id="middlename" name="middlename" placeholder="Enter Your Middle Name.">
+                                    </div>
+
+                                    <div class="form-group mb-2">
+                                        <label for="helpInputTop">Last Name<span style="color: red;">*</span></label>
+                                        <small class="text-muted">eg:<i>doe</i></small>
+                                        <input type="text" class="form-control form-control" id="lastname" name="lastname" placeholder="Enter Your Last Name." autofocus required>
+                                        <div class="invalid-feedback">
+                                            Please enter your last name.
+                                        </div>
+                                    </div>
+
+
+                                    @*Date Of Birth*@
+                                    <div class="form-group mb-2">
+                                        <label for="dob">Date of Birth<span style="color: red;">*</span></label>
+                                        <div class="input-group">
+                                            <input type="text" id="dob" name="dob" class="form-control" autofocus required />
+                                            <div class="input-group-append">
+                                                <span class="input-group-text">
+                                                    <i class="bi bi-calendar" style="height: 100%;"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="invalid-feedback">
+                                            Please Enter Date Of Birth.
+                                        </div>
+                                    </div>
+
+                                    @*Gender*@
+                                    <div class="form-group mb-2">
+                                        <label for="gender">Gender<span style="color: red;">*</span></label>
+                                        <div class="input-group">
+                                            <select class="form-control" id="gender" name="gender" autofocus required>
+                                                <option value="-1">Select Gender</option>
+                                                <option value="male">Male</option>
+                                                <option value="female">Female</option>
+                                                <option value="other">Other</option>
+                                            </select>
+                                        </div>
+                                        <div class="invalid-feedback">
+                                            Please select your gender.
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group mb-2">
+                                        <label for="helpInputTop">Nationality<span style="color: red;">*</span></label>
+                                        <small class="text-muted">eg:<i>Bangladeshi</i></small>
+                                        <input type="text" class="form-control form-control" id="nationality" name="nationality" placeholder="Enter Your Nationality." autofocus required>
+                                        <div class="invalid-feedback">
+                                            Please enter your Nationality.
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group mb-2">
+                                        <label for="address">Present Address<span style="color: red;">*</span></label>
+                                        <textarea class="form-control" id="address" name="address" placeholder="Enter Your Present Address." rows="2" required></textarea>
+                                        <div class="invalid-feedback">
+                                            Please enter your Present Address.
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group mb-2">
+                                        <label for="helpInputTop">Email<span style="color: red;">*</span></label>
+                                        <small class="text-muted"><i>someone@urmigroup.net</i></small>
+                                        <input type="email" class="form-control form-control" id="UN_official" name="UN_official" placeholder="Enter Your Email" required>
+                                        <div class="invalid-feedback">
+                                            Please enter your official email.
+                                        </div>
+                                    </div>
+
+
+                                    <div class="form-group mb-2">
+                                        <label for="helpInputTop">Contact No<span style="color: red;">*</span></label>
+                                        <small class="text-muted">eg:<i>01********</i></small>
+                                        <input type="text" class="form-control form-control" id="contactNo" name="contactNo" placeholder="Enter Your Contact No" required>
+                                        <div class="invalid-feedback">
+                                            Please enter your contact no.
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group mb-2">
+                                        <label for="address">Emergency Contact Information<span style="color: red;">*</span></label>
+                                        <textarea class="form-control" id="emergency" name="emergency" placeholder="Enter Emergency Contact Information." rows="2" required></textarea>
+                                        <div class="invalid-feedback">
+                                            Please enter Emergency Contact Information.
+                                        </div>
+                                    </div>
+
+                                    <div class="uploaded-design_passport"></div> 
+
+
+                                    <div class="form-group mb-2">
+                                        <label for="fileUploadpass">
+                                            Upload Current Passport (If necessary)
+                                        </label>
+                                        <small class="text-muted"><br />eg:<i>Accepted file types: .jpg, .jpeg, .pdf, .doc etc</i></small>
+                                        <div class="custom-file">
+                                            <input type="file" class="custom-file-input" id="fileUploadpass" name="fileUploadpass" multiple autofocus>
+                                        </div>
+                                        <div class="invalid-feedback">
+                                            Please choose a file to upload.
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group mb-2">
+                                        <label for="fileUploadNID">
+                                            Upload Current National ID card (If necessary)
+                                        </label>
+                                        <small class="text-muted"><br />eg:<i>Accepted file types: .jpg, .jpeg, .pdf, .doc etc</i></small>
+                                        <div class="custom-file">
+                                            <input type="file" class="custom-file-input" id="fileUploadNID" name="fileUploadNID" multiple autofocus>
+                                        </div>
+                                        <div class="invalid-feedback">
+                                            Please choose a file to upload.
+                                        </div>
+                                    </div>
+
+                                    <button type="submit" class="btn btn-primary btn-block btn-lg shadow-lg" id="sign_up_btn" name="sign_up_btn">Update</button>
+
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+
+    <div class="modal fade bd-example-modal" id="delete_File_modal">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-primary">
+                    <button type="button" class="close text-white"
+                            data-bs-dismiss="modal" aria-label="Close">
+                        <i data-feather="x"></i>
+                    </button>
+                </div>
+                <form id="delete_File_modal_form" name="delete_File_modal_form" class="needs-validation" novalidate>
+                    <div class="modal-body">
+                        <input type="hidden" class="form-control" id="delete_File_id_hidden" name="delete_File_id_hidden">
+                        <p class="text-dark">Do you really want to delete this record? This process cannot be undone.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-light-secondary rounded-pill" data-bs-dismiss="modal">
+                            <i class="bx bx-x d-block d-sm-none"></i><span class="d-none d-sm-block">Close</span>
+                        </button>
+                        <button type="submit" class="btn btn-danger rounded-pill ml-1">
+                            <i class="bx bx-check d-block d-sm-none"></i>
+                            <span class="d-none d-sm-block">Yes, Delete</span>
+                        </button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+@section scripts{
+
+    <script>
+        $("#MyProfile_li").addClass("active");
+
+    </script>
+    <script src="~/Users/Scripts/user.my_profile.js?bs=1"></script>
+}

@@ -1,0 +1,748 @@
+
+@{
+    ViewBag.Title = "Users";
+}
+
+
+@section styles{
+    <link href="~/_Assets/libs/jquery-multiselect/jquery.multiselect.css" rel="stylesheet" />
+    <style>
+        .was-validated select.select2:invalid + .select2.select2-container.select2-container--default span.select2-selection, select.select2.is-invalid + .select2.select2-container.select2-container--default span.select2-selection {
+            border-color: #fa5c7c;
+            padding-right: 2.25rem;
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='%23fa5c7c' viewBox='-2 -2 7 7'%3e%3cpath stroke='%23fa5c7c' d='M0 0l3 3m0-3L0 3'/%3e%3ccircle r='.5'/%3e%3ccircle cx='3' r='.5'/%3e%3ccircle cy='3' r='.5'/%3e%3ccircle cx='3' cy='3' r='.5'/%3e%3c/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right calc(0.375em + 0.1875rem) center;
+            background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
+        }
+
+        .was-validated select.select2:invalid + .select2.select2-container.select2-container--default .select2-selection__arrow, select.select2.is-invalid + .select2.select2-container.select2-container--default .select2-selection__arrow {
+            right: 25px !important;
+        }
+
+        .was-validated select.select2:valid + .select2.select2-container.select2-container--default span.select2-selection, select.select2.is-valid + .select2.select2-container.select2-container--default span.select2-selection {
+            border-color: #0acf97;
+            padding-right: 2.25rem;
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%230acf97' d='M2.3 6.73L.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1z'/%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right calc(0.375em + 0.1875rem) center;
+            background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
+        }
+
+        .was-validated select.select2:valid + .select2.select2-container.select2-container--default .select2-selection__arrow, select.select2.is-valid + .select2.select2-container.select2-container--default .select2-selection__arrow {
+            right: 25px !important;
+        }
+
+        .modal-body {
+            height: 55vh;
+            overflow-y: auto;
+        }
+
+        .ms-options-wrap > .ms-options .ms-selectall {
+            text-transform: unset !important;
+        }
+
+        .ms-options-wrap > .ms-options > ul > li.optgroup .label {
+            display: inline-flex !important;
+            padding: 0 !important;
+        }
+
+        .ms-options-wrap > .ms-options .ms-selectall {
+            padding-left: 10px;
+            display: inline-flex;
+            text-transform: unset !important;
+        }
+
+        .ms-options-wrap > button:focus, .ms-options-wrap > button {
+            border: 1px solid var(--ct-input-border-color) !important;
+            border-radius: 0.25rem !important;
+            padding: 0.45rem 2.7rem 0.45rem 0.9rem !important;
+            font-size: .875rem !important;
+            color: var(--ct-form-select-color) !important;
+        }
+
+        .ms-options-wrap > .ms-options {
+            font-size: 14px !important;
+        }
+
+            .ms-options-wrap > .ms-options > .ms-selectall.global {
+                margin: 0 !important;
+            }
+
+        /* .was-validated select.select2:invalid + .select2.select2-container.select2-container--default span.select2-selection, select.select2.is-invalid + .select2.select2-container.select2-container--default span.select2-selection {
+                border-color: #fa5c7c;
+                padding-right: 2.25rem;
+                background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='%23fa5c7c' viewBox='-2 -2 7 7'%3e%3cpath stroke='%23fa5c7c' d='M0 0l3 3m0-3L0 3'/%3e%3ccircle r='.5'/%3e%3ccircle cx='3' r='.5'/%3e%3ccircle cy='3' r='.5'/%3e%3ccircle cx='3' cy='3' r='.5'/%3e%3c/svg%3E");
+                background-repeat: no-repeat;
+                background-position: right calc(0.375em + 0.1875rem) center;
+                background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
+            }
+
+            .was-validated select.select2:invalid + .select2.select2-container.select2-container--default .select2-selection__arrow, select.select2.is-invalid + .select2.select2-container.select2-container--default .select2-selection__arrow {
+                right: 25px !important;
+            }
+
+            .was-validated select.select2:valid + .select2.select2-container.select2-container--default span.select2-selection, select.select2.is-valid + .select2.select2-container.select2-container--default span.select2-selection {
+                border-color: #0acf97;
+                padding-right: 2.25rem;
+                background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%230acf97' d='M2.3 6.73L.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1z'/%3e%3c/svg%3e");
+                background-repeat: no-repeat;
+                background-position: right calc(0.375em + 0.1875rem) center;
+                background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
+            }
+
+            .was-validated select.select2:valid + .select2.select2-container.select2-container--default .select2-selection__arrow, select.select2.is-valid + .select2.select2-container.select2-container--default .select2-selection__arrow {
+                right: 25px !important;
+            }
+
+            .modal-body {
+                height: 55vh;
+                overflow-y: auto;
+            }*/
+
+    </style>
+
+
+}
+
+
+
+<div class="page-heading">
+    <section class="section">
+        <div class="section-body">
+            <div class="row">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xs-12">
+                    <div class="card  shadow">
+                        <div class="card-header" style="background-color:#e0e0e0">
+                            <div class="row">
+                                <div class="col-12 col-md-6 order-md-1 order-last">
+                                    <h3>Users</h3>
+                                </div>
+                                @*<div class="col-12 col-md-6 order-md-2 order-first">
+                                    <div class="breadcrumb-header float-start float-lg-end">
+                                        <button class="btn btn-primary rounded-pill" data-toggle="modal" id="add_user_btn"><i class="fas fa-plus"></i> Add User</button>
+
+                                    </div>
+                                </div>*@
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <!--user filter section start-->
+                            <form class="form-inline" method="get" id="user_filter_form" name="user_filter_form">
+
+
+                                <div class="row">
+                                    <div class="col-lg-4 mb-1">
+                                        <div class="input-group">
+                                            <span class="input-group-text">Limit</span>
+                                            <select id="filter_limit" name="filter_limit" class="form-control form-select">
+                                                <option value="10" selected>10</option>
+                                                <option value="25">25</option>
+                                                <option value="50">50</option>
+                                                <option value="100">100</option>
+                                                <option value="250">250</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 mb-1">
+                                        <div class="input-group">
+                                            <span class="input-group-text">Company</span>
+                                            <select id="filter_companyy" name="filter_companyy" class="form-control form-select">
+                                                <option value="-1" selected>All...</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-4 mb-1">
+                                        <div class="input-group">
+                                            <span class="input-group-text">Location</span>
+                                            <select id="filter_location" name="filter_location" class="form-control form-select">
+                                                <option value="-1" selected>All...</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-4 mb-1">
+                                        <div class="input-group">
+                                            <span class="input-group-text">Floor</span>
+                                            <select id="filter_floor" name="filter_floor" class="form-control form-select">
+                                                <option value="-1" selected>All...</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-4 mb-1">
+                                        <div class="input-group">
+                                            <span class="input-group-text">user Name</span>
+                                            <input id="filter_username" name="filter_username" class="form-control" placeholder="user Name" />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 mb-1">
+                                        <div class="input-group">
+                                            <span class="input-group-text">User Role</span>
+                                            <select id="filter_user_role" name="filter_user_role" class="form-control form-select">
+                                                <option value="-1" selected>All...</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-4 mb-1">
+                                        <button type="button" class="btn btn-success" id="filter_btn" name="filter_btn">Filter</button>
+                                    </div>
+
+                                </div>
+                            </form>
+
+                            <!--user filter section end-->
+                            <div class="table-responsive">
+                                <table class="table table-striped table-hover" id="users_table">
+                                    <thead>
+                                        <tr>
+                                            <th>SL NO</th>
+                                            <th>Full Name</th>
+                                            <th>Username</th>
+                                            <th>Email</th>
+                                            <th>Contact No</th>
+                                            <th>User Role</th>
+                                            <th>[Company][Location][Floors]</th>
+                                            <th>User Permission</th>
+                                            <th>Supervisors</th>
+                                            <th>User Status</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="users_table_tbody"></tbody>
+
+                                </table>
+                            </div>
+
+                            <div class="row">
+                                <!--table info-->
+
+                                <div class="col-md-4">
+                                    <span class="badge bg-primary" id="user_table_info"></span>
+                                </div>
+                                <!--table spinner-->
+
+                                <div class="col-md-4">
+                                    <div class="text-center" id="users_loading_spinner">
+                                        <img src="~/Content/assets/vendors/svg-loaders/rings.svg" class="" style="width: 3rem" alt="audio"><span style="font-weight: 700">Loading...</span>
+                                    </div>
+                                </div>
+
+                                <!--table pagination-->
+                                <div class="col-md-4">
+                                    <nav aria-label="Page navigation example">
+                                        <ul class="pagination pagination-primary  justify-content-end">
+                                            <li class="page-item">
+                                                <a class="page-link" id="prev_users_list" title="Previous">
+                                                    <span aria-hidden="true"><i class="bi bi-chevron-left"></i></span>
+                                                </a>
+                                            </li>
+                                            <li class="page-item active">
+                                                <a class="page-link" id="users_pageno" title="Click here for jump to page">1</a>
+                                            </li>
+                                            <li class="page-item">
+                                                <input id="users_pageno_input" class="page-link display-none" style="width:50px" />
+                                            </li>
+                                            <li class="page-item">
+                                                <a class="page-link" id="next_users_list" title="Next">
+                                                    <span aria-hidden="true"><i class="bi bi-chevron-right"></i></span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--user add modal -->
+    <div class="modal fade bd-example-modal" id="add_user_modal" data-bs-backdrop="false">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-primary">
+                    <h5 class="modal-title white">
+                        Add User
+                    </h5>
+                    <button type="button" class="close text-white"
+                            data-bs-dismiss="modal" aria-label="Close">
+                        <i data-feather="x"></i>
+                    </button>
+                </div>
+                <form id="users_add_modal_form" name="users_add_modal_form" class="needs-validation" novalidate="">
+                    <div class="modal-body pb-1">
+
+
+                        <div class="row">
+                            <div class="form-group col-md-4">
+                                <label for="add_fullname"><span class="text-danger">*</span> Full Name</label>
+                                <input type="text" class="form-control rounded" id="add_fullname" name="add_fullname" placeholder="Enter full name" required>
+                                <div class="invalid-feedback">
+                                    Please enter full name.
+                                </div>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="add_contact_no">Contact No</label>
+                                <input type="text" class="form-control" id="add_contact_no" name="add_contact_no" placeholder="Enter contact no">
+                                <div class="invalid-feedback">
+                                    Please enter contact no.
+                                </div>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="add_email">Email</label>
+                                <input type="email" class="form-control" id="add_email" name="add_email" placeholder="Enter email">
+                                <div class="invalid-feedback">
+                                    Please enter valid email.
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-4">
+                                <label for="add_username"><span class="text-danger">*</span> Username</label>
+                                <input type="text" class="form-control" id="add_username" name="add_username" placeholder="Enter username" required>
+                                <div class="invalid-feedback">
+                                    Please enter username.
+                                </div>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="add_password"><span class="text-danger">*</span> Password</label>
+                                <input type="password" class="form-control" id="add_password" name="add_password" placeholder="Enter password" required>
+                                <div class="invalid-feedback">
+                                    Please enter company location.
+                                </div>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="add_user_role"><span class="text-danger">*</span> User Role</label>
+                                <select id="add_user_role" name="add_user_role" class="form-control form-select" required>
+                                    <option value="">Select User Role</option>
+                                </select>
+                                <div class="invalid-feedback">
+                                    Please select user role.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group col-md-4">
+                                <label for="add_department"><span class="text-danger">*</span> Department</label>
+                                <select id="add_department" name="add_department" class="form-control form-select">
+                                    <option value="">Select Department</option>
+                                </select>
+                                <div class="invalid-feedback">
+                                    Please select a department.
+                                </div>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="add_designation"><span class="text-danger">*</span> Designation</label>
+                                <select id="add_designation" name="add_designation" class="form-control form-select">
+                                    <option value="">Select Designation</option>
+                                </select>
+                                <div class="invalid-feedback">
+                                    Please select a Designation.
+                                </div>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="add_user_status"><span class="text-danger">*</span> User Status</label>
+                                <select id="add_user_status" name="add_user_status" class="form-control form-select" required>
+                                    <option value="">Select User Status</option>
+                                    <option value="0">InActive</option>
+                                    <option value="1" selected>Active</option>
+                                    <option value="2">Banned</option>
+                                </select>
+                                <div class="invalid-feedback">
+                                    Please select user status.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group col-md-4">
+                                <label for="users_add_company"><span class="text-danger">*</span> Select Company</label>
+                                <select id="users_add_company" name="users_add_company" class="form-control form-select">
+                                    <option value="">Select Company</option>
+                                </select>
+                                <div class="invalid-feedback">
+                                    Please select a company.
+                                </div>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="users_add_location"><span class="text-danger">*</span> Select Location</label>
+                                <select id="users_add_location" name="users_add_location" class="form-control form-select">
+                                    <option value="">Select Unit</option>
+                                </select>
+                                <div class="invalid-feedback">
+                                    Please select a unit.
+                                </div>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="users_add_floor"><span class="text-danger">*</span> Select Floor</label>
+                                <div class="input-group">
+                                    <select id="users_add_floor" name="users_add_floor" class="form-control form-select">
+                                        <option value="">Select Unit</option>
+                                    </select>
+                                    <button class="btn btn-soft-success" type="button" id="users_company_loc_floor_btn" name="users_company_loc_floor_btn">Add</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card" style="background: #eaffff; padding: .5rem; margin-bottom: .5rem; ">
+                            <div class="card-body" style="padding: .5rem; ">
+                                <div class="table-responsive">
+                                    <table class="table table-striped table-hover" id="ls_country_permission_table">
+                                        <thead>
+                                            <tr>
+                                                <th>SL NO</th>
+                                                <th>Company</th>
+                                                <th>Location</th>
+                                                <th>Floor</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="ls_country_permission_table_tbody">
+                                        </tbody>
+
+                                    </table>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label for="add_primary_company"><span class="text-danger">*</span> Primary Company</label>
+                                <select id="add_primary_company" name="add_primary_company" class="form-control form-select" required>
+                                    <option value="">Select Company</option>
+                                </select>
+                                <div class="invalid-feedback">
+                                    Please select a company.
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="add_primary_location"><span class="text-danger">*</span> Primary Location</label>
+                                <select id="add_primary_location" name="add_primary_location" class="form-control form-select" required>
+                                    <option value="">Select Location</option>
+                                </select>
+                                <div class="invalid-feedback">
+                                    Please select a location.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="add_user_permissions"><span class="text-danger">*</span> User Permission</label>
+                            <select id="add_user_permissions" name="add_user_permissions" class="form-control form-select select2" style="width:100%" required multiple>
+                            </select>
+                            <div class="invalid-feedback">
+                                Please select user permissions.
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="add_supervisor">Department Head/Management</label>
+                            <select id="add_user_supervisor" name="add_user_supervisor[]" class="form-control form-select" style="width:100%" multiple>
+                            </select>
+                            <div class="invalid-feedback">
+                                Please select at least one Supervisor.
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="modal-footer bg-whitesmoke br">
+                        <button type="button" class="btn btn-light-secondary rounded-pill" data-bs-dismiss="modal">
+                            <i class="bx bx-x d-block d-sm-none"></i><span class="d-none d-sm-block">Close</span>
+                        </button>
+                        <button type="submit" class="btn btn-primary rounded-pill ml-1" id="save_user_btn">
+                            <i class="bx bx-check d-block d-sm-none"></i>
+                            <span class="d-none d-sm-block">Save</span>
+                        </button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+    <!--user edit modal -->
+    <div class="modal fade bd-example-modal" id="edit_user_modal">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-primary">
+                    <h5 class="modal-title white">
+                        Edit user
+                    </h5>
+                    <button type="button" class="close bg-danger" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true" class="text-white">X</span>
+                    </button>
+                </div>
+                <form id="edit_user_modal_form" name="edit_user_modal_form" class="needs-validation" novalidate="">
+                    <div class="modal-body pb-1">
+
+
+                        <div class="row">
+                            <div class="form-group col-md-4">
+                                <label for="edit_fullname"><span class="text-danger">*</span> Full Name</label>
+                                <input type="text" class="form-control rounded" id="edit_fullname" name="edit_fullname" placeholder="Enter full name" readonly required>
+                                <div class="invalid-feedback">
+                                    Please enter full name.
+                                </div>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="edit_contact_no">Contact No</label>
+                                <input type="text" class="form-control" id="edit_contact_no" name="edit_contact_no" placeholder="Enter contact no" readonly>
+                                <div class="invalid-feedback">
+                                    Please enter contact no.
+                                </div>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="edit_email">Email</label>
+                                <input type="email" class="form-control" id="edit_email" name="edit_email" placeholder="Enter email" readonly>
+                                <div class="invalid-feedback">
+                                    Please enter valid email.
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group col-md-4">
+                                <label for="edit_department"><span class="text-danger">*</span> Department</label>
+                                <select id="edit_department" name="edit_department" class="form-control form-select" >
+                                    <option value="">Select Department</option>
+                                </select>
+                                <div class="invalid-feedback">
+                                    Please select a department.
+                                </div>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="edit_designation"><span class="text-danger">*</span> Designation</label>
+                                <select id="edit_designation" name="edit_designation" class="form-control form-select" >
+                                    <option value="">Select Designation</option>
+                                </select>
+                                <div class="invalid-feedback">
+                                    Please select a Designation.
+                                </div>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="edit_user_status"><span class="text-danger">*</span> User Status</label>
+                                <select id="edit_user_status" name="edit_user_status" class="form-control form-select" required>
+                                    <option value="">Select User Status</option>
+                                    <option value="0">InActive</option>
+                                    <option value="1" selected>Active</option>
+                                    <option value="2">Banned</option>
+                                </select>
+                                <div class="invalid-feedback">
+                                    Please select user status.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group col-md-4">
+                                <label for="edit_username"><span class="text-danger">*</span> Username</label>
+                                <input type="text" class="form-control" id="edit_username" name="edit_username" placeholder="Enter username" readonly>
+                                <div class="invalid-feedback">
+                                    Please enter username.
+                                </div>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="edit_password"><span class="text-danger">*</span> Password</label>
+                                <input type="password" class="form-control" id="edit_password" name="edit_password" placeholder="Enter password" readonly>
+                                <div class="invalid-feedback">
+                                    Please enter company location.
+                                </div>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="edit_user_role"><span class="text-danger">*</span> User Role</label>
+                                <select id="edit_user_role" name="edit_user_role" class="form-control form-select" required>
+                                    <option value="">Select User Role</option>
+                                </select>
+                                <div class="invalid-feedback">
+                                    Please select user role.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-4">
+                                <label for="users_edit_company"><span class="text-danger">*</span> Select Company</label>
+                                <select id="users_edit_company" name="users_edit_company" class="form-control form-select">
+                                    <option value="">Select Company</option>
+                                </select>
+                                <div class="invalid-feedback">
+                                    Please select a company.
+                                </div>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="users_edit_location"><span class="text-danger">*</span> Select Location</label>
+                                <select id="users_edit_location" name="users_edit_location" class="form-control form-select">
+                                    <option value="">Select Unit</option>
+                                </select>
+                                <div class="invalid-feedback">
+                                    Please select a unit.
+                                </div>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="users_edit_floor"><span class="text-danger">*</span> Select Floor</label>
+                                <div class="input-group">
+                                    <select id="users_edit_floor" name="users_edit_floor" class="form-control form-select">
+                                        <option value="">Select Unit</option>
+                                    </select>
+                                    <button class="btn btn-soft-success" type="button" id="users_company_loc_floor_edit_btn" name="users_company_loc_floor_edit_btn">Add</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card" style="background: #eaffff; padding: .5rem; margin-bottom: .5rem; ">
+                            <div class="card-body" style="padding: .5rem; ">
+                                <div class="table-responsive">
+                                    <table class="table table-striped table-hover" id="ls_edit_country_permission_table">
+                                        <thead>
+                                            <tr>
+                                                <th>SL NO</th>
+                                                <th>Company</th>
+                                                <th>Location</th>
+                                                <th>Floor</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="ls_edit_country_permission_table_tbody">
+                                        </tbody>
+
+                                    </table>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label for="edit_primary_company"><span class="text-danger">*</span> Primary Company</label>
+                                <select id="edit_primary_company" name="edit_primary_company" class="form-control form-select" readonly>
+                                    <option value="">Select Company</option>
+                                </select>
+                                <div class="invalid-feedback">
+                                    Please select a company.
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="edit_primary_location"><span class="text-danger">*</span> Primary Location</label>
+                                <select id="edit_primary_location" name="edit_primary_location" class="form-control form-select" readonly>
+                                    <option value="">Select Location</option>
+                                </select>
+                                <div class="invalid-feedback">
+                                    Please select a location.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="edit_user_permissions"><span class="text-danger">*</span> User Permission</label>
+                            <select id="edit_user_permissions" name="edit_user_permissions" class="form-control form-select select2" style="width:100%" required multiple>
+                            </select>
+                            <div class="invalid-feedback">
+                                Please select user permissions.
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-12">
+                                <label for="edit_supervisor">  Supervisor</label>
+                                <select id="edit_user_supervisor" name="edit_user_supervisor" class="form-control form-select select2" style="width:100%" multiple>
+                                </select>
+                                <div class="invalid-feedback">
+                                    Please select Supervisor.
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer bg-whitesmoke br">
+                        <button type="button" class="btn btn-light-secondary rounded-pill" data-bs-dismiss="modal">
+                            <i class="bx bx-x d-block d-sm-none"></i><span class="d-none d-sm-block">Close</span>
+                        </button>
+                        <button type="submit" class="btn btn-primary rounded-pill ml-1" id="update_user_btn">
+                            <i class="bx bx-check d-block d-sm-none"></i>
+                            <span class="d-none d-sm-block">Save</span>
+                        </button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+    <!--change password modal start-->
+
+    <div class="modal fade" tabindex="-1" role="dialog" id="change_password_modal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-whitesmoke br">
+                    <h5 class="modal-title">Change Password!</h5>
+                    <button type="button" class="close bg-danger" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true" class="text-white">X</span>
+                    </button>
+                </div>
+                <form id="change_password_modal_form" name="change_password_modal_form" class="needs-validation" novalidate>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="editpassword_username">Username</label>
+                            <input type="text" class="form-control" id="editpassword_username" name="editpassword_username" placeholder="Enter username" readonly>
+                            <div class="invalid-feedback">
+                                Please enter username.
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="editpassword_key">Enter Administrator Key</label>
+                            <input type="text" class="form-control" id="editpassword_key" name="editpassword_key" placeholder="Enter key" required>
+                            <div class="invalid-feedback">
+                                Please enter administrator key if you authorize.
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="editpassword_newpassword"><span class="text-danger">*</span> Enter New Password</label>
+                            <input type="text" class="form-control" id="editpassword_newpassword" name="editpassword_newpassword" placeholder="Enter password" required>
+                            <div class="invalid-feedback">
+                                Please enter new password.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer bg-whitesmoke br">
+                        <button type="button" class="btn btn-light-secondary rounded-pill" data-bs-dismiss="modal">
+                            <i class="bx bx-x d-block d-sm-none"></i><span class="d-none d-sm-block">Close</span>
+                        </button>
+                        <button type="submit" class="btn btn-danger rounded-pill ml-1" id="change_password_btn">
+                            <i class="bx bx-check d-block d-sm-none"></i>
+                            <span class="d-none d-sm-block">Change Password</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!--change password modal end-->
+
+
+</div>
+
+@section scripts{
+
+    <script>
+        $("#Users_li").addClass("active");
+        $("#Users_ul").addClass("active");
+        $("#users").addClass("active");
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    @*<script src="~/Content/assets/vendors/select2/dist/js/select2.min.js"></script>*@
+    <script src="~/_Assets/libs/jquery-multiselect/jquery.multiselect.js"></script>
+    <script src="~/_Assets/libs/select2/js/select2.full.min.js"></script>
+    <script src="~/Users/Scripts/u_users.js"></script>
+}

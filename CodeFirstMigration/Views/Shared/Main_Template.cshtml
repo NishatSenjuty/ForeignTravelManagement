@@ -1,0 +1,540 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title> TravelManagement </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
+    <meta content="Coderthemes" name="author" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="~/_assets/images/favicon.ico">
+
+    <!-- Select2 -->
+    <link href="~/_Assets/libs/select2/css/select2.min.css" rel="stylesheet" />
+    <!-- Bootstrap datepicker -->
+    <link href="~/_Assets/libs/bootstrap-datepicker/css/bootstrap-datepicker.min.css" rel="stylesheet" />
+    <!-- Bootstrap css -->
+    <link href="~/_assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <!-- App css -->
+    <link href="~/_assets/css/app.min.css" rel="stylesheet" type="text/css" id="app-style" />
+    <!-- icons -->
+    <link href="~/_assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+    <!-- izi toast -->
+    <link href="~/_assets/libs/izitoast/css/iziToast.min.css" rel="stylesheet" />
+    <!-- sweetalert -->
+    <link href="~/_Assets/libs/sweetalert2/sweetalert2.min.css" rel="stylesheet" />
+    <!-- datatables -->
+    <link href="~/_Assets/libs/datatables.net-bs5/css/dataTables.bootstrap5.min.css" rel="stylesheet" />
+    <link href="~/_Assets/libs/datatables.net-responsive-bs5/css/responsive.bootstrap5.min.css" rel="stylesheet" />
+    <link href="~/_Assets/libs/datatables.net-buttons-bs5/css/buttons.bootstrap5.min.css" rel="stylesheet" />
+    <link href="~/_Assets/libs/datatables.net-select-bs5/css/select.bootstrap5.min.css" rel="stylesheet" />
+
+    @RenderSection("styles", required: false)
+
+    <link href="~/_Assets/project.css" rel="stylesheet" />
+</head>
+
+<!-- body start -->
+<body data-layout-mode="default" data-theme="light" data-layout-width="fluid" data-topbar-color="dark" data-menu-position="fixed" data-leftbar-color="light" data-leftbar-size='default' data-sidebar-user='false'>
+
+    <!-- Begin page -->
+    <div id="wrapper">
+
+
+        <!-- Topbar Start -->
+        <div class="navbar-custom" style="background-color: #25396f ">
+            <div class="container-fluid">
+                <ul class="list-unstyled topnav-menu float-end mb-0">
+
+                    <li class="dropdown d-none d-lg-inline-block">
+                        <a class="nav-link dropdown-toggle arrow-none waves-effect waves-light" data-toggle="fullscreen">
+                            <i class="fe-maximize noti-icon"></i>
+                        </a>
+                    </li>
+
+
+                    <li class="dropdown notification-list topbar-dropdown">
+                        <a class="nav-link dropdown-toggle nav-user me-0 waves-effect waves-light d-flex align-items-start" data-bs-toggle="dropdown" role="button" aria-haspopup="false" aria-expanded="false">
+                            <img src="~/_assets/images/users/8267576.png" class="me-2 rounded-circle" height="42" alt="Brandon Smith" style="margin-top: 20px;">
+                            <div class="me-2">
+                                <h5 id="username">Name</h5>
+                                <span id="usertype" class="text-muted font-14">Role</span>
+                            </div>
+                            <i class="mdi mdi-chevron-down"></i>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-end profile-dropdown ">
+                            <!-- item-->
+                            <a href="/a/my_profile" class="dropdown-item notify-item">
+                                <i class="fe-user"></i>
+                                <span>My Profile</span>
+                            </a>
+                            <!-- item-->
+                            <!--<a href="javascript:void(0);" class="dropdown-item notify-item">
+                                <i class="fe-settings"></i>
+                                <span>Settings</span>
+                            </a>
+
+                            <div class="dropdown-divider"></div>-->
+                            <!-- item-->
+                            <a href="~/" class="dropdown-item notify-item">
+                                <i class="fe-log-out"></i>
+                                <span>Logout</span>
+                            </a>
+
+                        </div>
+                    </li>
+
+
+                </ul>
+
+                <!-- LOGO -->
+                <div class="logo-box">
+                    <a href="/a/index" class="logo logo-dark text-center">
+                        <span class="logo-sm">
+                            <img src="~/_assets/images/logo/urmi.white.png" alt="" height="22">
+                        </span>
+                        <span class="logo-lg">
+                            <img src="~/_assets/images/logo/urmi.white.png" alt="" height="20">
+                        </span>
+                    </a>
+
+                    <a href="/a/index" class="logo logo-light text-center">
+                        <span class="logo-sm">
+                            <img src="~/_assets/images/logo/urmi.white.png" alt="" height="26">
+                        </span>
+                        <span class="logo-lg">
+                            <img src="~/_assets/images/logo/urmi.white.png" alt="" height="60">
+                        </span>
+                    </a>
+                </div>
+
+                <ul class="list-unstyled topnav-menu topnav-menu-left m-0">
+                    <li>
+                        <button class="button-menu-mobile waves-effect waves-light" id="menubtn">
+                            <i class="fe-menu"></i>
+                        </button>
+                    </li>
+
+                    <li>
+                        <!-- Mobile menu toggle (Horizontal Layout)-->
+                        <a class="navbar-toggle nav-link" data-bs-toggle="collapse" data-bs-target="#topnav-menu-content">
+                            <div class="lines">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                        </a>
+                        <!-- End mobile menu toggle-->
+                    </li>
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <!-- end Topbar -->
+        <!-- ========== Left Sidebar Start ========== -->
+        <div class="left-side-menu" style="background: #25396f; ">
+
+            <div class="h-100" data-simplebar>
+
+                <!-- User box -->
+                <div class="user-box text-center">
+                    <img src="~/_assets/images/users/user-1.jpg" alt="user-img" title="Mat Helme"
+                         class="rounded-circle avatar-md">
+                    <div class="dropdown">
+                        <a href="javascript: void(0);" class="text-dark dropdown-toggle h5 mt-2 mb-1 d-block"
+                           data-bs-toggle="dropdown">Geneva Kennedy</a>
+                        <div class="dropdown-menu user-pro-dropdown">
+
+                            <!-- item-->
+                            <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                <i class="fe-user me-1"></i>
+                                <span>My Account</span>
+                            </a>
+
+                            <!-- item-->
+                            <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                <i class="fe-settings me-1"></i>
+                                <span>Settings</span>
+                            </a>
+
+                            <!-- item-->
+                            <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                <i class="fe-lock me-1"></i>
+                                <span>Lock Screen</span>
+                            </a>
+
+                            <!-- item-->
+                            <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                <i class="fe-log-out me-1"></i>
+                                <span>Logout</span>
+                            </a>
+
+                        </div>
+                    </div>
+                    <p class="text-muted">Admin Head</p>
+                </div>
+
+                <!--- Sidemenu -->
+                <div id="sidebar-menu">
+
+                    <ul id="side-menu">
+
+                        @*<li class="menu-title" id="mt_BasicSetups">Configuration</li>*@
+                        <li>
+                            <a href="/a/my_profile">
+                                <i class="fe-user"></i>
+                                <span> My Profile</span>
+                            </a>
+                        </li>
+                        <li id="li_BasicSetups">
+                            <a href="#m_BasicSetups" data-bs-toggle="collapse" class="" aria-expanded="true">
+                                <i data-feather="airplay"></i>
+                                <span> Basic Setup </span>
+                                <span class="menu-arrow"></span>
+                            </a>
+                            <div class="collapse show" id="m_BasicSetups" style="">
+                                <ul class="nav-second-level">
+                                    @*<li><a href="index.html">Dashboard 1</a></li>*@
+                                </ul>
+                            </div>
+                        </li>
+                        <li id="li_WorkStations">
+                            <a href="#m_WorkStations" data-bs-toggle="collapse" class="" aria-expanded="true">
+                                <i data-feather="clipboard"></i>
+                                <span> Work Stations </span>
+                                <span class="menu-arrow"></span>
+                            </a>
+                            <div class="collapse show" id="m_WorkStations" style="">
+                                <ul class="nav-second-level">
+                                    @*<li><a href="index.html">Dashboard 1</a></li>*@
+                                </ul>
+                            </div>
+                        </li>
+
+                        <li id="li_Approvals">
+                            <a href="#m_Approvals" data-bs-toggle="collapse" class="" aria-expanded="true">
+                                <i data-feather="clipboard"></i>
+                                <span> Review & Approvals </span>
+                                <span class="menu-arrow"></span>
+                            </a>
+                            <div class="collapse show" id="m_Approvals" style="">
+                                <ul class="nav-second-level">
+                                    @*<li><a href="index.html">Dashboard 1</a></li>*@
+                                </ul>
+                            </div>
+                        </li>
+
+
+                        <li id="li_Reports">
+                            <a href="#m_Reports" data-bs-toggle="collapse" class="" aria-expanded="true">
+                                <i data-feather="file-text"></i>
+                                <span> Reports </span>
+                                <span class="menu-arrow"></span>
+                            </a>
+                            <div class="collapse show" id="m_Reports" style="">
+                                <ul class="nav-second-level">
+                                    @*<li><a href="index.html">Dashboard 1</a></li>*@
+                                </ul>
+                            </div>
+                        </li>
+                        <li id="li_Users">
+                            <a href="#m_Users" data-bs-toggle="collapse" class="" aria-expanded="true">
+                                <i data-feather="users"></i>
+                                <span> Users </span>
+                                <span class="menu-arrow"></span>
+                            </a>
+                            <div class="collapse show" id="m_Users" style="">
+                                <ul class="nav-second-level">
+                                    @*<li><a href="index.html">Dashboard 1</a></li>*@
+                                </ul>
+                            </div>
+                        </li>
+
+                        <li id="li_Documents">
+                            <a href="#m_Documents" data-bs-toggle="collapse" class="" aria-expanded="true">
+                                <i data-feather="archive"></i>
+                                <span> User Manual </span>
+                                <span class="menu-arrow"></span>
+                            </a>
+                            <div class="collapse show" id="m_Documents" style="">
+                                <ul class="nav-second-level">
+                                    @*<li><a href="index.html">Dashboard 1</a></li>*@
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <!-- End Sidebar -->
+
+                <div class="clearfix"></div>
+
+            </div>
+            <!-- Sidebar -left -->
+
+        </div>
+        <!-- Left Sidebar End -->
+        <!-- ============================================================== -->
+        <!-- Start Page Content here -->
+        <!-- ============================================================== -->
+
+        <div class="content-page">
+            <div class="content">
+
+                <!-- Start Content-->
+                <div class="container-fluid">
+
+                    @RenderBody()
+
+                </div> <!-- container -->
+
+            </div> <!-- content -->
+            <!-- Footer Start -->
+            <footer class="footer" style="padding: 10px;">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <script>document.write(new Date().getFullYear())</script> &copy; All Right Reserved | <a target="_blank" href="https://www.urmigroup.com/" style="color: #FFF176">URMI GROUP</a>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+            <!-- end Footer -->
+
+        </div>
+
+        <!-- ============================================================== -->
+        <!-- End Page content -->
+        <!-- ============================================================== -->
+
+
+    </div>
+    <!-- END wrapper -->
+    <!-- Right bar overlay-->
+    <div class="rightbar-overlay"></div>
+
+    <!-- jquery -->
+    <script src="~/_assets/libs/jquery/jquery.min.js"></script>
+    <!-- Head js -->
+    <script src="~/_assets/js/head.js"></script>
+    <!-- Vendor js -->
+    <script src="~/_assets/js/vendor.min.js"></script>
+    <!-- sweetalert -->
+    <script src="~/_assets/libs/sweetalert2/sweetalert2.all.min.js"></script>
+
+    <!-- App js -->
+    <script src="~/_assets/js/app.min.js"></script>
+    <!-- izi toast -->
+    <script src="~/_assets/libs/izitoast/js/iziToast.min.js"></script>
+
+    <!-- datatables -->
+    <script src="~/_Assets/libs/jszip/jszip.min.js"></script>
+    <script src="~/_assets/libs/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="~/_assets/libs/datatables.net-bs5/js/dataTables.bootstrap5.min.js"></script>
+    <script src="~/_assets/libs/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="~/_assets/libs/datatables.net-responsive-bs5/js/responsive.bootstrap5.min.js"></script>
+    <script src="~/_assets/libs/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="~/_assets/libs/datatables.net-buttons-bs5/js/buttons.bootstrap5.min.js"></script>
+    <script src="~/_assets/libs/datatables.net-buttons/js/buttons.html5.min.js"></script>
+    <script src="~/_assets/libs/datatables.net-buttons/js/buttons.flash.min.js"></script>
+    <script src="~/_assets/libs/datatables.net-buttons/js/buttons.print.min.js"></script>
+    <script src="~/_assets/libs/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+    <script src="~/_assets/libs/datatables.net-select/js/dataTables.select.min.js"></script>
+    <script src="~/_assets/libs/datatables.net/js/datatables.mark.min.js"></script>
+    <script src="~/_Assets/libs/datatables.net-fixedcolumns/dataTables.fixedColumns.min.js"></script>
+    <script src="~/_assets/libs/jquery-markjs/jquery.mark.min.js"></script>
+    <script src="~/_Assets/libs/jquery/jquery-ui.js"></script>
+
+    <!-- momentjs -->
+    <script src="~/_Assets/libs/moment/moment.js"></script>
+
+    <script>
+
+        let isMobile = /(mobile)/i.test(navigator.userAgent);
+
+        //Mark search item for DataTables
+        $.extend(true, $.fn.dataTable.defaults, {
+            mark: true
+        });
+
+        //Get left-sidebar menu state (Which is saved previously)
+        if (typeof (Storage) !== undefined && !isMobile) {
+            if (localStorage.getItem("condensed") == 1) {
+                $('body')
+                    .attr('data-leftbar-size', 'condensed')
+                    .attr('class', '')
+                    .change();
+            }
+            else {
+                $('body')
+                    .attr('data-leftbar-size', 'default')
+                    .attr('class', 'sidebar-enable')
+                    .change();
+            }
+        }
+
+        //Listen to hamburger(☰) menu button click
+        $("#menubtn").on("click", function () {
+            if (!isMobile) {
+                if ($('body').attr('data-leftbar-size') == 'condensed') {
+                    localStorage.setItem("condensed", "0");
+                }
+                else {
+                    localStorage.setItem("condensed", "1");
+                }
+            }
+        });
+
+        $(document).ready(() => {
+            if (isMobile) {
+                let li = $("#menubtn").parent();
+                let menubtn = $("#menubtn").clone();
+                $("#menubtn").remove();
+                $(menubtn)
+                    .appendTo(li)
+                    .on('click', () => {
+                        $('body').toggleClass('sidebar-enable');
+                    });
+
+                if (location.pathname == '/a/index') {
+                    $('body')
+                        .attr('data-leftbar-size', 'default')
+                        .attr('class', 'sidebar-enable')
+                        .change();
+                } else {
+                    $('body')
+                        .attr('class', '')
+                        .change();
+                }
+            }
+        });
+
+        //Add waves effect to the buttons
+        $('button').addClass('waves-effect waves-light');
+        $('a.btn').addClass('waves-effect waves-light');
+        $('button.btn-light-secondary').removeClass('waves-light').addClass('waves-dark');
+
+        //Prevents modal to close from outside click, Makes modal draggable
+        $(".modal")
+            .attr({
+                'data-bs-keyboard': 'false',
+                'data-bs-backdrop': 'static'
+            })
+            .draggable();
+
+
+        var groupBy = function (xs, key) {
+            return xs.reduce(function (rv, x) {
+                (rv[x[key]] = rv[x[key]] || []).push(x);
+                return rv;
+            }, {});
+        };
+
+        //Gets and sets Menu for the user
+        load_menu_by_user();
+        function load_menu_by_user() {
+            $.ajax({
+                url: '/TravelManagement/GetNavbar',
+                type: "GET",
+                contentType: "application/json; charset-utf-8",
+                success: function (resp) {
+                    if (resp.error) {
+                        iziToast.error({
+                            title: 'Error!',
+                            message: 'Error',
+                            position: 'bottomRight'
+                        });
+                    }
+                    else {
+                        $("#username").text(resp.DisplayName);
+                        $("#usertype").text(resp.RoleTitle);
+
+                        var groupedNav = groupBy(resp.navtabs, ['MenuCategoryTitle']);
+
+                        $.each(groupedNav, function (index, value) {
+
+                            if (value[0].MenuCategoryTitle == "BasicSetups") {
+                                $.each(value, function (index, _value) {
+                                    $(`#m_BasicSetups ul`).append(`<li><a href="/a/${_value.MenuItemShortName}">${_value.MenuItemName}</a></li>`);
+                                });
+                            }
+
+                            if (value[0].MenuCategoryTitle == "WorkStations") {
+                                $.each(value, function (index, _value) {
+                                    $(`#m_WorkStations ul`).append(`<li><a href="/a/${_value.MenuItemShortName}">${_value.MenuItemName}</a></li>`);
+                                });
+                            }
+
+                            if (value[0].MenuCategoryTitle == "Review & Approvals") {
+                                $.each(value, function (index, _value) {
+                                    $(`#m_Approvals ul`).append(`<li><a href="/a/${_value.MenuItemShortName}">${_value.MenuItemName}</a></li>`);
+                                });
+                            }
+
+                            if (value[0].MenuCategoryTitle == "Reports") {
+                                $.each(value, function (index, _value) {
+                                    $(`#m_Reports ul`).append(`<li><a href="/a/${_value.MenuItemShortName}">${_value.MenuItemName}</a></li>`);
+                                });
+                            }
+
+                            if (value[0].MenuCategoryTitle == "Users") {
+                                $.each(value, function (index, _value) {
+                                    $(`#m_Users ul`).append(`<li><a href="/a/${_value.MenuItemShortName}">${_value.MenuItemName}</a></li>`);
+                                });
+                            }
+
+                            if (value[0].MenuCategoryTitle == "Documents") {
+                                $.each(value, function (index, _value) {
+                                    $(`#m_Documents ul`).append(`<li><a href="/a/${_value.MenuItemShortName}">${_value.MenuItemName}</a></li>`);
+                                });
+                            }
+
+
+                        })
+
+                        var currentPath = window.location.pathname;
+                        var lis = $('#side-menu li');
+                        if (currentPath.length > 1) {
+                            $.each(lis, function (index, val) {
+                                if (val.id.length == 0) {
+                                    if (val.innerHTML.toLowerCase().indexOf(`"${currentPath}"`) > -1) {
+                                        $(val).addClass('active');
+                                    }
+                                } else {
+                                    if (val.innerHTML.toLowerCase().indexOf(`"${currentPath}"`) == -1) {
+                                        $(`#${val.id}`).find('a')[0].click();
+                                    }
+                                }
+                            });
+                        }
+
+
+                        if ($("#m_BasicSetups li a").length == 0) {
+                            $("#li_BasicSetups").remove();
+                        }
+                        if ($("#m_WorkStations li a").length == 0) {
+                            $("#li_WorkStations").remove();
+                        }
+                        if ($("#m_Approvals li a").length == 0) {
+                            $("#li_Approvals").remove();
+                        }
+                        if ($("#m_Reports li a").length == 0) {
+                            $("#li_Reports").remove();
+                        }
+                        if ($("#m_Users li a").length == 0) {
+                            $("#li_Users").remove();
+                        }
+                        if ($("#m_Documents li a").length == 0) {
+                            $("#li_Documents").remove();
+                        }
+                    }
+                }
+            });
+        }
+    </script>
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>

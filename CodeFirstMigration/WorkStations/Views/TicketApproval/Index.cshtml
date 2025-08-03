@@ -1,0 +1,424 @@
+﻿
+@{
+    ViewBag.Title = "Ticket Approval Page";
+}
+@section styles{
+
+
+
+    <style>
+        .ui-datepicker {
+            z-index: 9999 !important;
+        }
+    </style>
+}
+<div class="page-heading">
+    <section class="section">
+        <div class="section-body">
+            <div class="row">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xs-12">
+                    <div class="card  shadow">
+                        <div class="card-header" style="background-color:#e0e0e0">
+                            <div class="row">
+                                <div class="col-12 col-md-6 order-md-1 order-last">
+                                    <h3>Ticket Requisition Preview</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+
+
+                            <!--EmpInfo filter section start-->
+
+
+                            <form class="form-inline" method="get" id="gatepass_filter_form" name="gatepass_filter_form">
+
+                                <div class="row mt-3">
+                                    <div class="col-lg-3 mb-1">
+                                        <div class="input-group mb-3">
+                                            <span class="input-group-text">Limit</span>
+                                            <select id="filter_limit" name="filter_limit" class="form-control form-select">
+                                                <option value="10" selected>10</option>
+                                                <option value="25">25</option>
+                                                <option value="50">50</option>
+                                                <option value="100">100</option>
+                                                <option value="250">250</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-3 mb-1">
+                                        <div class="input-group mb-3">
+                                            <span class="input-group-text">Ticket Requisition No.</span>
+                                            <input id="filter_ticketreq_no" name="filter_ticketreq_no" class="form-control" />
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-3">
+                                        <div class="input-group">
+                                            <span class="input-group-text">Employee ID</span>
+                                            <input id="ls_rp_EmpInfo_filter_Id" name="ls_rp_EmpInfo_filter_Id" class="form-control" />
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-3">
+                                        <div class="input-group">
+                                            <span class="input-group-text">Company</span>
+                                            <select class="form-control form-control form-select" id="ls_filter_rp_EmpInfo_Company" name="ls_filter_rp_EmpInfo_Company">
+                                                <option value="">Select a Company</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-3">
+                                        <div class="input-group">
+                                            <span class="input-group-text">Department</span>
+                                            <select class="form-control form-control form-select" id="ls_filter_rp_EmpInfo_department" name="ls_filter_rp_EmpInfo_department">
+                                                <option value="">Select a Department</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-3">
+                                        <div class="input-group">
+                                            <span class="input-group-text">Designation</span>
+                                            <select class="form-control form-control form-select" id="ls_filter_rp_EmpInfo_designation" name="ls_filter_rp_EmpInfo_designation">
+                                                <option value="">Select a Designation</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-3 mb-1">
+                                        <div class="input-group mb-3">
+                                            <span class="input-group-text">Status</span>
+                                            <select id="filter_gatepass_status" name="filter_gatepass_status" class="form-control form-select">
+                                                <option value="-1" selected>All...</option>
+                                                <option value="2">Pending</option>
+                                                <option value="1">Approved</option>
+                                                <option value="3">Rejected</option>
+                                            </select>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="col-lg-3">
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-soft-blue" id="ls_filter_btn" name="ls_filter_btn">Filter</button>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </form>
+
+                            <br />
+
+                            <!--EmpInfo filter section end-->
+                            <div class="table-responsive mt-2">
+                                <table class="table table-striped table-hover" id="ls_EmpInfo_table">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center">SL NO</th>
+                                            <th class="text-center">Action</th>
+                                            <th class="text-center">Ticket Requisition No.</th>
+                                            <th class="text-center">Employee ID NO.</th>
+                                            <th class="text-center">Employee Name</th>
+                                            <th class="text-center">Contact NO</th>
+                                            <th class="text-center">Company</th>
+                                            <th class="text-center">Department</th>
+                                            <th class="text-center">Designation</th>
+                                            <th class="text-center">Destination</th>
+                                            <th class="text-center">Departure Date</th>
+                                            <th class="text-center">Return Date</th>
+                                            <th class="text-center">Other Special Requests</th>
+                                            <th class="text-center">Remarks</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="ls_EmpInfo_table_tbody"></tbody>
+
+                                </table>
+                            </div>
+
+                            <div class="row">
+                                @*table info*@
+                                <div class="col-md-4">
+                                    <span class="badge bg-primary" id="ls_EmpInfo_table_info"></span>
+                                </div>
+                                @*table spinner*@
+
+                                <div class="col-md-4">
+                                    <div class="text-center" id="spinner">
+                                        <img src="~/Content/assets/vendors/svg-loaders/rings.svg" class="" style="width: 3rem" alt="audio"><span style="font-weight: 700">Loading...</span>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!--ticketreq add modal -->
+    <div class="modal fade bd-example-modal" id="ls_add_ticketreq_modal">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-primary">
+                    <h5 class="modal-title white">
+                        Ticket Requisition
+                    </h5>
+                    <button type="button" class="close text-white"
+                            data-bs-dismiss="modal" aria-label="Close">
+                        <i data-feather="x"></i>
+                    </button>
+                </div>
+                <form id="ls_add_ticketreq_modal_form" name="ls_add_ticketreq_modal_form" class="needs-validation" novalidate>
+                    <div class="modal-body">
+                        <div class="row">
+
+                            <div class="col-sm-6">
+                                <div class="input-group">
+                                    <span class="input-group-text">Ticket Requisition No.</span>
+                                    <input id="ls_add_ticketreq_ticketReqno" name="ls_add_ticketreq_ticketReqno" class="form-control" readonly />
+                                </div>
+
+                                @*First Column Starts*@
+
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <span class="input-group-text">
+                                            Purpose of Travel
+                                        </span>
+                                        <input id="ls_add_ticketreq_travel" name="ls_add_ticketreq_travel" class="form-control" readonly />
+                                    </div>
+                                </div>
+
+
+                                @*Destination*@
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <span class="input-group-text">
+                                            Destination
+                                        </span>
+                                        <input id="ls_add_ticketreq_destination" name="ls_add_ticketreq_destination" class="form-control" readonly />
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <span class="input-group-text">Departure Date</span>
+                                        <input type="text" id="ls_add_ticketreq_DepartDate" name="ls_add_ticketreq_DepartDate" class="form-control" disabled />
+                                    </div>
+                                    <div class="invalid-feedback">
+                                        Please Enter entry date.
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <span class="input-group-text">Return Date</span>
+                                        <input type="text" id="ls_add_ticketreq_ReturnDate" name="ls_add_ticketreq_ReturnDate" class="form-control" disabled />
+                                    </div>
+                                    <div class="invalid-feedback">
+                                        Please Enter Return date.
+                                    </div>
+                                </div>
+
+
+                                @*Preferred Airlines (if any)*@
+                                <div class="form-group">
+            <div class="input-group">
+                <span class="input-group-text">Preferred Airlines (if any)</span>
+                <select id="ls_add_ticketreq_airlines" name="ls_add_ticketreq_airlines" class="form-control form-select" disabled>
+                    <option value="-1">Select Airlines...</option>
+                </select>
+            </div>
+            <div class="invalid-feedback">
+                Please select an Airlines.
+            </div>
+        </div>
+
+
+                            </div>
+                            @*First Column Ends*@
+
+
+
+                            @*Second Column Starts*@
+
+                            <div class="col-sm-6">
+
+                                @*Frequent Flayer No*@
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <span class="input-group-text">
+                                            Frequent Flayer No
+                                        </span>
+                                        <input id="ls_add_ticketreq_flayerNo" name="ls_add_ticketreq_flayerNo" class="form-control" readonly />
+                                    </div>
+                                </div>
+
+
+                                @*Preferred Flight Number (if any)*@
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <span class="input-group-text">
+                                            Preferred Flight Number  (if any)
+                                        </span>
+                                        <input id="ls_add_ticketreq_flightno" name="ls_add_ticketreq_flightno" class="form-control" readonly/>
+                                    </div>
+                                </div>
+
+
+                                @*Seat Preference*@
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <span class="input-group-text">Seat Preference</span>
+                                        <select id="ls_add_ticketreq_seat" name="ls_add_ticketreq_seat" class="form-control form-select" disabled>
+                                            <option value="-1">Select Seat Preference...</option>
+                                            <option value="1">Aisle</option>
+                                            <option value="2">Window</option>
+                                        </select>
+                                    </div>
+                                    <div class="invalid-feedback">
+                                        Please select Seat Preference.
+                                    </div>
+                                </div>
+
+
+                                @*Meal Preference (if any)*@
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <span class="input-group-text">
+                                            Meal Preference (if any)
+                                        </span>
+                                        <input id="ls_add_ticketreq_meal" name="ls_add_ticketreq_meal" class="form-control" readonly />
+                                    </div>
+                                </div>
+
+                                @*Special Requests/Requirements*@
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <span class="input-group-text">
+                                            Special Requests/Requirements:
+                                        </span>
+                                        <input id="ls_add_ticketreq_spreq" name="ls_add_ticketreq_spreq" class="form-control" readonly />
+                                    </div>
+                                </div>
+
+                                @*Remarks*@
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <span class="input-group-text">
+                                            Remarks
+                                        </span>
+                                        <input id="ls_add_ticketreq_remarks" name="ls_add_ticketreq_remarks" class="form-control" readonly />
+                                    </div>
+                                </div>
+                            </div>
+                            @*Second Column Ends*@
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+    @*Add Modal*@
+
+    @*supervisor approve*@
+    <!--requisition approve modal-->
+
+    <div class="modal fade bd-example-modal" id="ls_approve_requisition_modal">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-primary">
+                    <h5 class="modal-title white">
+                        Approve Ticket Requisition
+                    </h5>
+                    <button type="button" class="close text-white"
+                            data-bs-dismiss="modal" aria-label="Close">
+                        <i data-feather="x"></i>
+                    </button>
+                </div>
+                <form id="ls_approve_requisition_modal_form" name="ls_approve_requisition_modal_form" class="needs-validation" novalidate>
+                    <div class="modal-body">
+                        <input type="hidden" class="form-control" id="ls_approve_ticketreq_id_hidden" name="ls_approve_ticketreq_id_hidden">
+                        <p class="text-dark">Are you considering approving this record?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-light-secondary rounded-pill" data-bs-dismiss="modal">
+                            <i class="bx bx-x d-block d-sm-none"></i><span class="d-none d-sm-block">Close</span>
+                        </button>
+                        <button type="submit" class="btn btn-danger rounded-pill ml-1">
+                            <i class="bx bx-check d-block d-sm-none"></i>
+                            <span class="d-none d-sm-block">Approve</span>
+                        </button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="modal fade bd-example-modal" id="ls_reject_requisition_modal">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-primary">
+                    <h5 class="modal-title white">
+                        Reject Ticket Requisition
+                    </h5>
+                    <button type="button" class="close text-white"
+                            data-bs-dismiss="modal" aria-label="Close">
+                        <i data-feather="x"></i>
+                    </button>
+                </div>
+                <form id="ls_reject_requisition_modal_form" name="ls_reject_requisition_modal_form" class="needs-validation" novalidate>
+                    <div class="modal-body">
+                        <input type="hidden" class="form-control" id="ls_reject_ticketreq_id_hidden" name="ls_reject_ticketreq_id_hidden">
+                        <p class="text-dark">Are you confirming the rejection of this record?</p>
+                        <div class="form-group">
+                            <label for="reject_comments" class="text-dark">Comments:</label>
+                            <textarea class="form-control" id="reject_comments" name="reject_comments" rows="3" required></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-light-secondary rounded-pill" data-bs-dismiss="modal">
+                            <i class="bx bx-x d-block d-sm-none"></i><span class="d-none d-sm-block">Close</span>
+                        </button>
+                        <button type="submit" class="btn btn-danger rounded-pill ml-1">
+                            <i class="bx bx-check d-block d-sm-none"></i>
+                            <span class="d-none d-sm-block">Reject</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section scripts{
+
+
+
+    <link href="~/content/assets/vendors/jquery-ui/jquery-ui.css" rel="stylesheet" />
+    <script src="~/Content/assets/vendors/jquery-ui/jquery-ui.js"></script>
+
+    <script src="~/WorkStations/Scripts/ls_TicketApproval.js"></script>
+
+
+    <script>
+        $("#Approvals_li").addClass("active");
+        $("#Approvals_ul").addClass("active");
+        $("#ticketreqApp").addClass("active");
+    </script>
+
+}
+
